@@ -4,16 +4,16 @@ const initialState = {
   mode: "light",
 };
 
-export const screenModeSlice = createSlice({
-  name: "global",
+export const brightModeSlice = createSlice({
+  name: "brightMode",
   initialState,
   reducers: {
-    setScreenMode: (state) => {
+    setBrightMode: (state) => {
       state.mode = state.mode === "light" ? "light" : "dark";
     },
   },
 });
 
-export const { setScreenMode } = screenModeSlice.actions;
+export const { setBrightMode } = brightModeSlice.actions;
 
-export default screenModeSlice.reducer;
+export default brightModeSlice.reducer;

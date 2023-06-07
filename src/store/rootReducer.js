@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import screenModeReducer from "features/globals/screenModeSlice";
+import brightModeReducer from "features/globals/brightModeSlice";
 
 const rootReducer = combineReducers({
-  screenMode: screenModeReducer,
+  brightMode: brightModeReducer,
 });
 
 export default rootReducer;

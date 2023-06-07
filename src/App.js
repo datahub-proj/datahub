@@ -4,8 +4,8 @@ import { useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 import { themeSettings } from "utils/theme";
-import Layout from "components/layout/Layout";
-import Dashboard from "components/dashboard/Dashboard";
+import Layout from "pages/Layout";
+import Dashboard from "pages/Dashboard";
 
 function App() {
   const mode = useSelector((state) => state.brightMode.mode); // light

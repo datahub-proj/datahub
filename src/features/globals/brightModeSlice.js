@@ -9,7 +9,7 @@ export const brightModeSlice = createSlice({
   initialState,
   reducers: {
     setBrightMode: (state) => {
-      state.mode = state.mode === "light" ? "light" : "dark";
+      state.mode = state.mode === "light" ? "dark" : "light";
     },
   },
 });

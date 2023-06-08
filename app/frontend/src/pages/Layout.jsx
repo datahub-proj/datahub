@@ -1,9 +1,11 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "components/header/Header";
 import Sidebar from "components/sidebar/Sidebar";
+import PageContent from "components/common/PageContent";
 
 const Layout = () => {
   const [open, setOpen] = React.useState(false);
@@ -20,6 +22,9 @@ const Layout = () => {
         handleDrawerOpen={handleDrawerOpen}
         handleDrawerClose={handleDrawerClose}
       />
+      <PageContent>
+        <Outlet />
+      </PageContent>
     </Box>
   );
 };

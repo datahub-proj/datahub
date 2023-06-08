@@ -6,7 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { themeSettings } from "utils/theme";
 import Layout from "pages/Layout";
 import Workspaces from "pages/Workspaces";
-import { useTheme } from "@emotion/react";
+import UserManagment from "pages/UserManagment";
+import Settings from "pages/Settings";
 
 function App() {
   const mode = useSelector((state) => state.brightMode.mode);
@@ -21,6 +22,8 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Navigate to="/Workspaces" replcae />} />
               <Route path="/Workspaces" element={<Workspaces />} />
+              <Route path="/users" element={<UserManagment />} />
+              <Route path="/settings/account" element={<Settings />} />
             </Route>
           </Routes>
         </ThemeProvider>

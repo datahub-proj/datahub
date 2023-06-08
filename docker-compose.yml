@@ -1,0 +1,17 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./app/backend
+    ports:
+      - 8000:8000
+    depends_on:
+      - frontend
+  frontend:
+    build:
+      context: ./app/frontend
+    ports:
+      - 3000:3000
+  # Uncomment the following line if you want the frontend to access the backend API
+  # environment:
+  #   - REACT_APP_BACKEND_URL=http://backend:8000

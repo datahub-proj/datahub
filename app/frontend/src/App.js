@@ -6,10 +6,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { themeSettings } from "utils/theme";
 import Layout from "pages/Layout";
 import Workspaces from "pages/Workspaces";
+import { useTheme } from "@emotion/react";
 
 function App() {
   const mode = useSelector((state) => state.brightMode.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+
   return (
     <div className="app">
       <BrowserRouter>

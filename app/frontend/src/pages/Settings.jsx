@@ -1,7 +1,10 @@
 import React from "react";
+import withAuth from "components/common/WithAuth";
 
 const Settings = () => {
   return <div>Settings</div>;
 };
 
-export default Settings;
+const ProtectedSettings = withAuth(Settings);
+
+export default ProtectedSettings;

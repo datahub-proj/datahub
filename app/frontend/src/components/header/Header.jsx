@@ -27,9 +27,9 @@ const Header = ({ user }) => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
+
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
-
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
@@ -59,7 +59,6 @@ const Header = ({ user }) => {
               </Tooltip>
             )}
           </IconButton>
-
           {/* User Information */}
           {user.loggedIn && (
             <FlexBetween>

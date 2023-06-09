@@ -1,7 +1,10 @@
 import React from "react";
+import withAuth from "components/common/WithAuth";
 
 const Workspaces = () => {
   return <div>Workspaces</div>;
 };
 
-export default Workspaces;
+const ProtectedWorkspaces = withAuth(Workspaces);
+
+export default ProtectedWorkspaces;

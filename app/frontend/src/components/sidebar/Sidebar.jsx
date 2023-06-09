@@ -1,4 +1,4 @@
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import {
   List,
@@ -6,7 +6,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Divider,
 } from "@mui/material";
 import HomeOutlined from "@mui/icons-material/HomeOutlined";
 import FolderOpenOutlinedIcon from "@mui/icons-material/FolderOpenOutlined";
@@ -61,8 +60,8 @@ const Sidebar = ({ open, handleDrawerOpen, handleDrawerClose }) => {
       onMouseEnter={handleDrawerOpen}
       onMouseLeave={handleDrawerClose}
     >
+      <br />
       <DrawerHeader />
-      <Divider />
       <List>
         {tabList.map((item) => (
           <ListItem key={item.text} disablePadding sx={{ display: "block" }}>

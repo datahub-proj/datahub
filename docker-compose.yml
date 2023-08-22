@@ -1,17 +1,38 @@
-version: "3"
+version: '3.7'
+
 services:
-  backend:
+  api:
     build:
-      context: ./app/backend
+      context: .
+      dockerfile: "./docker/backend/Dockerfile"
+    container_name: api
+    hostname: api
     ports:
-      - 8000:8000
+      - "8000:8000"
+    networks:
+      - app
+    tty: true
     depends_on:
-      - frontend
-  frontend:
-    build:
-      context: ./app/frontend
+      - db
+  db:
+    build: 
+      context: ./docker/mysql
+      dockerfile: "Dockerfile"
+    container_name: db
+    hostname: db
     ports:
-      - 3000:3000
-  # Uncomment the following line if you want the frontend to access the backend API
-  # environment:
-  #   - REACT_APP_BACKEND_URL=http://backend:8000
+      - "3306:3306"
+    networks:
+      - app 
+  # ui:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/frontend/Dockerfile
+  #   container_name: ui
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - app
+networks:
+  app:
+    driver: 'bridge'      

@@ -4,14 +4,12 @@ FROM node:14-alpine
 # Set the working directory
 WORKDIR /
 
-# Copy package.json and package-lock.json
-COPY package*.json .
+# Copy the rest of the frontend code
+COPY frontend .
 
 # Install dependencies
 RUN npm ci --only=production
 
-# Copy the rest of the frontend code
-COPY . .
 
 # Build the frontend app
 RUN npm run build

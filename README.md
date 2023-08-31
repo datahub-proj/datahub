@@ -1,4 +1,4 @@
-# Project
+# Project 
 
 This repository contains the source code for My Project, a web application built with a Flask backend and a React frontend.
 

@@ -1,0 +1,55 @@
+export const navigations = [
+  { name: "대시보드", path: "/dashboard/default", icon: "dashboard" },
+  { label: "페이지", type: "label" },
+  {
+    name: "계정관리",
+    icon: "security",
+    children: [
+      { name: "로그인", iconText: "SI", path: "/auth/login" },
+      { name: "회원가입", iconText: "SU", path: "/auth/register" },
+      {
+        name: "비밀번호 찾기",
+        iconText: "FP",
+        path: "/auth/forgot-password",
+      },
+      { name: "에러 페이지", iconText: "404", path: "/session/404" },
+    ],
+  },
+  { label: "Components", type: "label" },
+  {
+    name: "Components",
+    icon: "favorite",
+    badge: { value: "30+", color: "secondary" },
+    children: [
+      { name: "Auto Complete", path: "/material/autocomplete", iconText: "A" },
+      { name: "Buttons", path: "/material/buttons", iconText: "B" },
+      { name: "Checkbox", path: "/material/checkbox", iconText: "C" },
+      { name: "Dialog", path: "/material/dialog", iconText: "D" },
+      {
+        name: "Expansion Panel",
+        path: "/material/expansion-panel",
+        iconText: "E",
+      },
+      { name: "Form", path: "/material/form", iconText: "F" },
+      { name: "Icons", path: "/material/icons", iconText: "I" },
+      { name: "Menu", path: "/material/menu", iconText: "M" },
+      { name: "Progress", path: "/material/progress", iconText: "P" },
+      { name: "Radio", path: "/material/radio", iconText: "R" },
+      { name: "Switch", path: "/material/switch", iconText: "S" },
+      { name: "Slider", path: "/material/slider", iconText: "S" },
+      { name: "Snackbar", path: "/material/snackbar", iconText: "S" },
+      { name: "Table", path: "/material/table", iconText: "T" },
+    ],
+  },
+  {
+    name: "Charts",
+    icon: "trending_up",
+    children: [{ name: "Echarts", path: "/charts/echarts", iconText: "E" }],
+  },
+  {
+    name: "Documentation",
+    icon: "launch",
+    type: "extLink",
+    path: "http://demos.ui-lib.com/matx-react-doc/",
+  },
+];

@@ -1,10 +1,7 @@
 import Layout from "./Layout/Layout";
-import useSettings from "hooks/useSettings";
 
-const AppLayout = () => {
-  const { settings } = useSettings();
-  console.log(settings);
-  return <Layout />;
+const AppLayout = ({ props }) => {
+  return <Layout {...props} />;
 };
 
 export default AppLayout;

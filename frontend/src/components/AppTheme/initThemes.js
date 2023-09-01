@@ -1,15 +1,16 @@
 import { createTheme } from "@mui/material";
-import { blue } from "@mui/material/colors"; // #TODO themeColor
-// TODO: themeOptions
+import { forEach, merge } from "lodash";
+import { themeColors } from "./themeColors";
+import themeOptions from "./themeOptions";
 
 function createAppThemes() {
-  return createTheme({
-    palette: {
-      primary: {
-        main: blue[500],
-      },
-    },
+  let themes = {};
+
+  forEach(themeColors, (value, key) => {
+    themes[key] = createTheme(merge({}, themeOptions, value));
   });
+
+  return themes;
 }
 
 export const themes = createAppThemes();

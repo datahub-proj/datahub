@@ -12,8 +12,6 @@ export const SettingsProvider = ({ settings, children }) => {
     settings || AppLayoutSettings
   );
 
-  console.log(currentSettings);
-
   const handleUpdateSettings = (update = {}) => {
     const marged = merge({}, currentSettings, update);
     setCurrentSettings(marged);

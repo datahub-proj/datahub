@@ -69,7 +69,6 @@ const Layout = () => {
     if (settings.layoutSettings.leftSidebar.show) {
       let mode = isMdScreen ? 'close' : sidebarMode;
       updateSettings({ layoutSettings: { leftSidebar: { mode } } });
-      console.log(isMdScreen, mode);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMdScreen]);

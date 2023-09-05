@@ -1,36 +1,27 @@
-import os
-
+# Third party modules
+from dotenv import load_dotenv
 from pydantic import BaseSettings
 
 
-class Config(BaseSettings):
-    ENV: str = "development"
-    DEBUG: bool = True
-    APP_HOST: str = "0.0.0.0"
-    APP_PORT: int = 8000
-    DB_URL: str = f"mysql+aiomysql://fastapi:fastapi@db:3306/datahub"
+# ---------------------------------------------------------
+#
+class Configuration(BaseSettings):
+    """Configuration parameters."""
+
+    # project
+    name: str
+    version: str
+
+    db_url: str
+
+    jwt_secret: str
+    jwt_algorithm: str
 
 
-class DevelopmentConfig(Config):
-    pass
+# ---------------------------------------------------------
 
+# Note that the ".env" file is always implicitly loaded.
+load_dotenv()
 
-class LocalConfig(Config):
-    pass
-
-
-class ProductionConfig(Config):
-    DEBUG: bool = False
-
-
-def get_config():
-    env = os.getenv("ENV", "local")
-    config_type = {
-        "dev": DevelopmentConfig(),
-        "local": LocalConfig(),
-        "prod": ProductionConfig(),
-    }
-    return config_type[env]
-
-
-config: Config = get_config()
+config = Configuration()
+""" Configuration parameters instance. """

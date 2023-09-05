@@ -1,24 +1,105 @@
 [tool.poetry]
-name = "backend"
+name = "app"
 version = "0.1.0"
 description = ""
 authors = ["ithingv34 <ithingv34@gmail.com>"]
 readme = "README.md"
+homepage = "https://github.com/ithingv34/datahub"
+repository = "https://github.com/ithingv34/datahub"
 packages = [{include = "src"}]
+license = "MIT"
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
-fastapi = "0.85.0"
-uvicorn = "0.18.3"
-click = "^8.1.7"
+httpx = "^0.24.1"
+fastapi = "0.98.0"
+uvicorn = {extras = ["standrad"], version = "^0.23.2"}
 sqlalchemy = "1.4.41"
-aiomysql = "^0.2.0"
-alembic = "^1.11.3"
+asyncpg = "0.26.0"
+psycopg2-binary = "^2.9.7"
+alembic = "1.8.1"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-dotenv = "^1.0.0"
+
+
+[tool.poetry.group.lint.dependencies]
+isort = "^5.12.0"
+black = "^23.7.0"
+flake8 = "^6.1.0"
+mypy = "^1.4.1"
+
+
+[tool.poetry.group.test.dependencies]
+respx = "^0.20.2"
+pytest-asyncio = "^0.21.1"
+trio = "^0.22.2"
+pytest-cov = "^4.1.0"
+
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.5.2"
+mkdocs-material = "^9.1.21"
+mkdocstrings = {extras = ["python"], version = "^0.22.0"}
+mkdocs-render-swagger-plugin = "^0.0.4"
+
+
+[tool.poetry.group.semver.dependencies]
+python-semantic-release = "7.32.2"
 
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
-pytest-asyncio = "^0.21.1"
+loguru = "^0.7.0"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+# 3rd party import
+ignore_missing_imports = true
+# dynamic typing
+disallow_any_unimported = true
+disallow_any_expr = false
+disallow_any_decorated = false
+disallow_any_explicit = true
+disallow_any_generics = false
+disallow_subclassing_any = true
+# platform
+python_version = "3.10"
+# untyped
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+# None and Optional
+no_implicit_optional = true
+# Warnings
+warn_return_any = false
+warn_unreachable = true
+# Misc
+pretty = true
+
+[tool.pytest.ini_options]
+testpaths = ["src", "tests"]
+addopts = "-p no:cacheprovider" # deactivating pytest caching.
+
+[tool.coverage.report]
+exclude_lines = [
+    'if __name__ == "__main__":'
+]
+
+[tool.semantic_release]
+branch = "main"
+version_variable = "src/app/__init__.py:__version__"
+version_toml = "pyproject.toml:tool.poetry.version"
+version_source = "tag"
+commit_version_number = true # required for version_source = "tag"
+tag_commit = true
+upload_to_pypi = false
+upload_to_release = false
+hvcs = "github" # gitlab is also supported
+commit_message = "{version} [skip ci]" # skip triggering ci pipelines for version commits
 
 [build-system]
 requires = ["poetry-core"]

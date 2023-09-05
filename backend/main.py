@@ -1,29 +1,33 @@
-import os
+# BUILTIN modules
+import argparse
 
-import click
+# Third party modules
 import uvicorn
 
-from src.config import config
+# Local modules
+from src.main import log_level
 
 
-@click.command()
-@click.option(
-    "--env",
-    type=click.Choice(["local", "dev", "prod"], case_sensitive=False),
-    default="local",
-)
-@click.option("--debug", type=click.BOOL, is_flag=True, default=False)
-def main(env: str, debug: bool):
-    os.environ["ENV"] = env
-    os.environ["DEBUG"] = str(debug)
-    uvicorn.run(
-        app="src.server:app",
-        host=config.APP_HOST,
-        port=config.APP_PORT,
-        reload=True if config.ENV != "production" else False,
-        workers=1,
-    )
-
-
+# ---------------------------------------------------------
 if __name__ == "__main__":
-    main()
+    Form = argparse.ArgumentDefaultsHelpFormatter
+    description = "A utility script that let you start the app choosing reload or not."
+    parser = argparse.ArgumentParser(description=description, formatter_class=Form)
+    parser.add_argument(
+        "-r", action="store_true", dest="reload", default=False, help="Activate reload"
+    )
+    args = parser.parse_args()
+
+    # Define default parameters that are used by all.
+    uv_config = {
+        "app": "src.main:app",
+        "port": 8002,
+        "log_level": log_level,
+        "log_config": {"disable_existing_loggers": False, "version": 1},
+    }
+
+    # Add the parameters that reload needs.
+    if args.reload:
+        uv_config |= {"reload": True}
+
+    uvicorn.run(**uv_config)

@@ -1,16 +1,14 @@
-import { createContext, useState } from "react";
-import { merge } from "lodash";
-import { AppLayoutSettings } from "components/AppLayout/settings";
+import { createContext, useState } from 'react';
+import { merge } from 'lodash';
+import { AppSettings } from 'config/settings';
 
 const SettingsContext = createContext({
-  settings: AppLayoutSettings,
-  updateSettings: () => {},
+  settings: AppSettings,
+  updateSettings: () => {}
 });
 
 export const SettingsProvider = ({ settings, children }) => {
-  const [currentSettings, setCurrentSettings] = useState(
-    settings || AppLayoutSettings
-  );
+  const [currentSettings, setCurrentSettings] = useState(settings || AppSettings);
 
   const handleUpdateSettings = (update = {}) => {
     const marged = merge({}, currentSettings, update);
@@ -21,7 +19,7 @@ export const SettingsProvider = ({ settings, children }) => {
     <SettingsContext.Provider
       value={{
         settings: currentSettings,
-        updateSettings: handleUpdateSettings,
+        updateSettings: handleUpdateSettings
       }}
     >
       {children}

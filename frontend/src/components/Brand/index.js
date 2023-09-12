@@ -1,19 +1,19 @@
-import { Box, styled } from "@mui/material";
-import AppLogo from "./AppLogo";
-import useSettings from "hooks/useSettings";
-import { Span } from "./Typography";
+import { Box, styled } from '@mui/material';
+import AppLogo from 'components/Logo';
+import useSettings from 'hooks/useSettings';
+import { Span } from 'components/Typography';
 
 const BrandRoot = styled(Box)(() => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  padding: "20px 18px 20px 29px",
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '20px 18px 20px 29px'
 }));
 
 const StyledSpan = styled(Span)(({ mode }) => ({
   fontSize: 18,
-  marginLeft: ".5rem",
-  display: mode === "compact" ? "none" : "block",
+  marginLeft: '.5rem',
+  display: mode === 'compact' ? 'none' : 'block'
 }));
 
 const Brand = ({ children }) => {
@@ -29,10 +29,7 @@ const Brand = ({ children }) => {
           Datahub
         </StyledSpan>
       </Box>
-      <Box
-        className="sidenavHoverShow"
-        sx={{ display: mode === "compact" ? "none" : "block" }}
-      >
+      <Box className="sidenavHoverShow" sx={{ display: mode === 'compact' ? 'none' : 'block' }}>
         {children || null}
       </Box>
     </BrandRoot>

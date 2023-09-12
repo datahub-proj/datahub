@@ -1,13 +1,13 @@
 import { Navigate } from 'react-router-dom';
 
 // default layout
-import AppLayout from './components/AppLayout/AppLayout';
+import AppLayout from 'layouts/Layout';
 import Analytics from './pages/dashboard/Analytics';
 
 // auth pages
-import AuthLogin from 'pages/auth/AuthLogin';
-import AuthRegister from 'pages/auth/AuthRegister';
-import AuthForgotPassword from 'pages/auth/AuthForgotPassword';
+import AuthLogin from 'pages/auth/LoginPage';
+import AuthRegister from 'pages/auth/RegisterPage';
+import AuthForgotPassword from 'pages/auth/ForgotPasswordPage';
 
 const routes = [
   {

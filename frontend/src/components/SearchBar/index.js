@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Icon, IconButton, styled } from '@mui/material';
-import { topBarHeight } from 'utils/constant';
+import { topBarHeight } from 'data/constant';
 
 const SearchContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -30,7 +30,7 @@ const SearchInput = styled('input')(({ theme }) => ({
   '&::placeholder': { color: theme.palette.text.primary }
 }));
 
-const AppSearchBox = () => {
+const AppSearchBar = () => {
   const [open, setOpen] = useState(false);
 
   const toggle = () => setOpen(!open);
@@ -55,4 +55,4 @@ const AppSearchBox = () => {
   );
 };
 
-export default AppSearchBox;
+export default AppSearchBar;

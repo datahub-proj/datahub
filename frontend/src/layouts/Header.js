@@ -1,4 +1,4 @@
-import { themeShadows } from 'components/AppTheme/themeColors';
+import { themeShadows } from 'theme/themeColors';
 import {
   Box,
   styled,
@@ -9,18 +9,18 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { topBarHeight } from 'utils/constant';
+import { topBarHeight } from 'data/constant';
 import { Link } from 'react-router-dom';
-import { Span } from '../../Typography';
-import AppMenu from 'components/AppMenu';
-import AppSearchBox from 'components/AppSearchBox';
+import { Span } from 'components/Typography';
+import AppMenu from 'components/Menu';
+import AppSearchBar from 'components/SearchBar';
 import useSettings from 'hooks/useSettings';
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary
 }));
 
-const TopbarRoot = styled('div')({
+const HeaderRoot = styled('div')({
   top: 0,
   zIndex: 96,
   height: topBarHeight,
@@ -28,7 +28,7 @@ const TopbarRoot = styled('div')({
   transition: 'all 0.3s ease'
 });
 
-const TopbarContainer = styled(Box)(({ theme }) => ({
+const HeaderContainer = styled(Box)(({ theme }) => ({
   padding: '8px',
   paddingLeft: 18,
   paddingRight: 20,
@@ -69,7 +69,7 @@ const StyledItem = styled(MenuItem)(({ theme }) => ({
   '& span': { marginRight: '10px', color: theme.palette.text.primary }
 }));
 
-const LayoutTopbar = () => {
+const AppHeader = () => {
   const theme = useTheme();
   const { settings, updateSettings } = useSettings();
   const isMdScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -90,15 +90,15 @@ const LayoutTopbar = () => {
   };
 
   return (
-    <TopbarRoot>
-      <TopbarContainer>
+    <HeaderRoot>
+      <HeaderContainer>
         <Box display="flex">
           <StyledIconButton onClick={handleSidebarToggle}>
             <Icon>menu</Icon>
           </StyledIconButton>
         </Box>
         <Box display="flex" alignItems="center">
-          <AppSearchBox />
+          <AppSearchBar />
           <AppMenu
             menuButton={
               <UserMenu>
@@ -109,33 +109,26 @@ const LayoutTopbar = () => {
             }
           >
             <StyledItem>
-              <Link to="/">
-                <Icon> home </Icon>
-                <Span> Home </Span>
-              </Link>
-            </StyledItem>
-
-            <StyledItem>
               <Link to="/page-layouts/user-profile">
                 <Icon> person </Icon>
-                <Span> Profile </Span>
+                <Span> 계정관리 </Span>
               </Link>
             </StyledItem>
 
             <StyledItem>
               <Icon> settings </Icon>
-              <Span> Settings </Span>
+              <Span> 설정 </Span>
             </StyledItem>
 
             <StyledItem>
               <Icon> power_settings_new </Icon>
-              <Span> Logout </Span>
+              <Span> 로그아웃 </Span>
             </StyledItem>
           </AppMenu>
         </Box>
-      </TopbarContainer>
-    </TopbarRoot>
+      </HeaderContainer>
+    </HeaderRoot>
   );
 };
 
-export default LayoutTopbar;
+export default AppHeader;

@@ -1,7 +1,7 @@
 import { Box, styled } from '@mui/material';
-import { AppVerticalNav } from './AppVerticalNav/AppVerticalNav';
 import useSettings from 'hooks/useSettings';
 import { navigations } from 'navigations';
+import { VerticalNav } from 'components/VerticalNav';
 
 const StyledBox = styled(Box)(() => ({
   paddingLeft: '1rem',
@@ -42,7 +42,7 @@ const Sidebar = () => {
   return (
     <>
       <StyledBox>
-        <AppVerticalNav items={navigations} />
+        <VerticalNav items={navigations} />
       </StyledBox>
 
       {/* Sidebar close */}

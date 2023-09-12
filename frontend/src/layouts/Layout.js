@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Box, styled, useMediaQuery, useTheme, ThemeProvider } from '@mui/material';
 import useSettings from 'hooks/useSettings';
-import { sidebarWidth, sidebarCompactWidth } from 'utils/constant';
+import { sidebarWidth, sidebarCompactWidth } from 'data/constant';
 
-import SidebarTheme from '../../AppTheme/SidebarTheme/SidebarTheme';
-import LayoutSidebar from './LayoutSidebar';
-import LayoutTopbar from './LayoutTopbar';
-import Footer from '../../Footer';
+import SidebarTheme from 'theme/Sidebar';
+import AppSidebar from './Sidebar';
+import AppHeader from './Header';
+import AppFooter from './Footer';
 
 const LayoutRoot = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -77,17 +77,17 @@ const Layout = () => {
     <LayoutRoot>
       {showSidebar && sidebarMode !== 'close' && (
         <SidebarTheme>
-          <LayoutSidebar />
+          <AppSidebar />
         </SidebarTheme>
       )}
       <LayoutContainer width={sideBarWidth}>
         <ThemeProvider theme={topbarTheme}>
-          <LayoutTopbar />
+          <AppHeader />
         </ThemeProvider>
         <ContentBox>
           <Outlet />
         </ContentBox>
-        <Footer />
+        <AppFooter />
       </LayoutContainer>
       {/* <SecondarySidebar /> */}
     </LayoutRoot>

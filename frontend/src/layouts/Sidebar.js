@@ -1,8 +1,8 @@
 import { Box, Switch, Hidden, styled, useTheme } from '@mui/material';
 import useSettings from 'hooks/useSettings';
-import { themeShadows } from 'components/AppTheme/themeColors';
-import { sidebarWidth, sidebarCompactWidth } from 'utils/constant';
-import { convertHexToRGB } from 'utils/utils';
+import { themeShadows } from 'theme/themeColors';
+import { sidebarWidth, sidebarCompactWidth } from 'data/constant';
+import { convertHexToRGB } from 'utils/convertHexToRGB';
 import Sidebar from 'components/Sidebar';
 import Brand from 'components/Brand';
 
@@ -39,7 +39,7 @@ const NavListBox = styled(Box)({
   flexDirection: 'column'
 });
 
-const LayoutSidebar = () => {
+const AppSidebar = () => {
   const theme = useTheme();
   const { settings, updateSettings } = useSettings();
   const leftSidebar = settings.layoutSettings.leftSidebar;
@@ -83,4 +83,4 @@ const LayoutSidebar = () => {
   );
 };
 
-export default LayoutSidebar;
+export default AppSidebar;

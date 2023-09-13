@@ -1,29 +1,120 @@
 import { Navigate } from 'react-router-dom';
 
 // default layout
-import AppLayout from './components/AppLayout/AppLayout';
-import Analytics from './pages/dashboard/Analytics';
+import AppLayout from 'layouts/Layout';
+import Dashboard from 'pages/home/Dashboard';
 
-// auth pages
-import AuthLogin from 'pages/auth/AuthLogin';
-import AuthRegister from 'pages/auth/AuthRegister';
-import AuthForgotPassword from 'pages/auth/AuthForgotPassword';
+// Home
+import Announcement from 'pages/home/Announcement';
+import Statistics from 'pages/home/Statistics';
+
+// Data
+// Data Catalog
+import DataCatalogPage from 'pages/data/data-catalog/DataCatalogPage';
+// Data Pipeline
+import JobsPage from 'pages/data/data-pipeline/JobsPage';
+import NewJobEntryPage from 'pages/data/data-pipeline/NewJobEntryPage';
+import MyJobEntryPage from 'pages/data/data-pipeline/MyJobEntryPage';
+import AllJobEntryPage from 'pages/data/data-pipeline/AllJobEntryPage';
+
+// Platform
+import JupyterHubPage from 'pages/platform/JupyterHubPage';
+
+// System
+import LogPage from 'pages/system/LogPage';
+import NotificationPage from 'pages/system/NotificationPage';
+
+// settings
+import UserListPage from 'pages/settings/UserListPage';
+import PermissionPage from 'pages/settings/PermissionPage';
+import RolesPage from 'pages/settings/RolesPage';
+
+// Auth pages
+import LoginPage from 'pages/auth/LoginPage';
+import RegisterPage from 'pages/auth/RegisterPage';
+import ForgotPasswordPage from 'pages/auth/ForgotPasswordPage';
+import GroupListPage from 'pages/settings/GroupListPage';
 
 const routes = [
   {
     element: <AppLayout />,
     children: [
+      // Home
       {
-        path: '/dashboard/default',
-        element: <Analytics />
+        path: '/home/dashboard',
+        element: <Dashboard />
+      },
+      {
+        path: '/home/announcement',
+        element: <Announcement />
+      },
+      {
+        path: '/home/statistics',
+        element: <Statistics />
+      },
+      // Data
+      {
+        path: '/data-catalog',
+        element: <DataCatalogPage />
+      },
+      {
+        path: '/data-pipeline/jobs',
+        element: <JobsPage />
+      },
+      {
+        path: '/data-pipeline/new',
+        element: <NewJobEntryPage />
+      },
+      {
+        path: '/data-pipeline/me',
+        element: <MyJobEntryPage />
+      },
+      {
+        path: '/data-pipeline/all',
+        element: <AllJobEntryPage />
+      },
+      {
+        path: '/platform/jupyterhub',
+        element: <JupyterHubPage />
+      },
+      {
+        path: '/system/log',
+        element: <LogPage />
+      },
+      {
+        path: '/system/notification',
+        element: <NotificationPage />
+      },
+
+      // Settings
+      {
+        path: '/settings/users',
+        element: <UserListPage />
+      },
+      {
+        path: '/settings/groups',
+        element: <GroupListPage />
+      },
+      {
+        path: '/settings/permissions',
+        element: <PermissionPage />
+      },
+      {
+        path: '/settings/permissions/roles',
+        element: <RolesPage />
       }
     ]
   },
+  // Auth
+  { path: '/auth/login', element: <LoginPage /> },
+  { path: '/auth/register', element: <RegisterPage /> },
+  { path: '/auth/forgot-password', element: <ForgotPasswordPage /> },
 
-  { path: '/auth/login', element: <AuthLogin /> },
-  { path: '/auth/register', element: <AuthRegister /> },
-  { path: '/auth/forgot-password', element: <AuthForgotPassword /> },
-  { path: '/', element: <Navigate to="dashboard/default" /> }
+  // Default Page
+  { path: '/', element: <Navigate to="/home/dashboard" /> },
+  { path: '/settings', element: <Navigate to="/settings/users" /> },
+  { path: '/data-pipeline', element: <Navigate to="/data-pipeline/jobs" /> },
+  { path: '/system', element: <Navigate to="/system/log" /> }
 ];
 
 export default routes;

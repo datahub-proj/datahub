@@ -14,8 +14,7 @@ export const navigations = [
     children: [
       { name: '작업 관리', icon: 'play_arrow', path: '/data-pipeline/jobs' },
       { name: '신규 연동신청', icon: 'control_point', path: '/data-pipeline/new' },
-      { name: '나의 연동신청 현황', icon: 'content_paste', path: '/data-pipeline/me' },
-      { name: '전체 연동신청 현황', icon: 'content_copy', path: '/data-pipeline/all' }
+      { name: '연동신청 관리', icon: 'content_paste', path: '/data-pipeline/all' }
     ]
   },
   // Platform
@@ -25,11 +24,11 @@ export const navigations = [
   // System
   { label: 'System', type: 'label' },
   {
-    name: '시스템 로그',
+    name: '시스템 관리',
     icon: 'security',
     children: [
-      { name: '로그 조회', icon: 'short_text', path: '/system/log' },
-      { name: '알림 조회', icon: 'notifications_none', path: '/system/notification' }
+      { name: '로그', icon: 'short_text', path: '/system/log' },
+      { name: '알림', icon: 'notifications_none', path: '/system/notification' }
     ]
   },
   // User

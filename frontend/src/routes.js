@@ -105,11 +105,16 @@ const routes = [
       }
     ]
   },
-
+  // Auth
   { path: '/auth/login', element: <LoginPage /> },
   { path: '/auth/register', element: <RegisterPage /> },
   { path: '/auth/forgot-password', element: <ForgotPasswordPage /> },
-  { path: '/', element: <Navigate to="home/dashboard" /> }
+
+  // Default Page
+  { path: '/', element: <Navigate to="/home/dashboard" /> },
+  { path: '/settings', element: <Navigate to="/settings/users" /> },
+  { path: '/data-pipeline', element: <Navigate to="/data-pipeline/jobs" /> },
+  { path: '/system', element: <Navigate to="/system/log" /> }
 ];
 
 export default routes;

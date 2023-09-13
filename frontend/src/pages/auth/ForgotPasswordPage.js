@@ -1,33 +1,9 @@
-import { Box, Button, Card, Grid, styled, TextField, Typography } from '@mui/material';
+import { Button, Card, Grid, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ForgotPasswordRoot, ContentBox } from 'styles/pages/auth/ForgotPasswordPage';
 
-const FlexBox = styled(Box)(() => ({
-  display: 'flex',
-  alignItems: 'center'
-}));
-
-const JustifyBox = styled(FlexBox)(() => ({
-  justifyContent: 'center'
-}));
-
-const ContentBox = styled(Box)(({ theme }) => ({
-  padding: 32,
-  background: theme.palette.background.default
-}));
-
-const ForgotPasswordRoot = styled(JustifyBox)(() => ({
-  background: '#ffffff',
-  minHeight: '100vh !important',
-  '& .card': {
-    maxWidth: 800,
-    margin: '1rem',
-    borderRadius: 12,
-    boxShadow: 'rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;'
-  }
-}));
-
-const AuthForgotPassword = () => {
+const ForgotPasswordPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('admin@example.com');
 
@@ -76,4 +52,4 @@ const AuthForgotPassword = () => {
   );
 };
 
-export default AuthForgotPassword;
+export default ForgotPasswordPage;

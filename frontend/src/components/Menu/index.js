@@ -1,12 +1,7 @@
-import { Fragment, useState, Children } from 'react';
-import { Menu, ThemeProvider, Box, styled } from '@mui/material';
+import { useState, Children } from 'react';
+import { Menu, ThemeProvider } from '@mui/material';
 import useSettings from 'hooks/useSettings';
-
-const MenuButton = styled(Box)(({ theme }) => ({
-  display: 'inline-block',
-  color: theme.palette.text.primary,
-  '& div:hover': { backgroundColor: theme.palette.action.hover }
-}));
+import { MenuButton } from 'styles/components/Menu';
 
 const AppMenu = (props) => {
   const { settings } = useSettings();

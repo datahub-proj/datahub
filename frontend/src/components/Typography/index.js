@@ -1,25 +1,11 @@
-import { Box, styled } from "@mui/material";
-import clsx from "clsx";
+import clsx from 'clsx';
+import { StyledBox } from 'styles/components/Typography';
 
-const StyledBox = styled(Box)(({ ellipsis }) => ({
-  ...(ellipsis && {
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  }),
-}));
-
-export const Span = ({
-  children,
-  className,
-  ellipsis,
-  textTransform,
-  ...props
-}) => {
+export const Span = ({ children, className, ellipsis, textTransform, ...props }) => {
   return (
     <StyledBox
       ellipsis={ellipsis}
-      className={clsx({ [className || ""]: true })}
+      className={clsx({ [className || '']: true })}
       component="span"
       lineHeight="1.5"
       {...props}
@@ -29,17 +15,11 @@ export const Span = ({
   );
 };
 
-export const Paragraph = ({
-  children,
-  className,
-  ellipsis,
-  textTransform,
-  ...props
-}) => {
+export const Paragraph = ({ children, className, ellipsis, textTransform, ...props }) => {
   return (
     <StyledBox
       ellipsis={ellipsis}
-      className={clsx({ [className || ""]: true })}
+      className={clsx({ [className || '']: true })}
       component="p"
       mb={0}
       mt={0}

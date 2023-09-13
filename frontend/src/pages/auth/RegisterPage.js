@@ -1,35 +1,12 @@
 import { LoadingButton } from '@mui/lab';
 import { Card, Grid, TextField, Typography } from '@mui/material';
-import { Box, styled, useTheme } from '@mui/material';
-import { Paragraph } from 'components/Typography/Typography';
+import { useTheme } from '@mui/material';
+import { Paragraph } from 'components/Typography';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-
-const FlexBox = styled(Box)(() => ({ display: 'flex', alignItems: 'center' }));
-
-const JustifyBox = styled(FlexBox)(() => ({ justifyContent: 'center' }));
-
-const ContentBox = styled(JustifyBox)(() => ({
-  height: '100%',
-  padding: '32px',
-  background: 'rgba(0, 0, 0, 0.01)'
-}));
-
-const JWTRegister = styled(JustifyBox)(() => ({
-  background: '#ffffff',
-  minHeight: '100vh !important',
-  '& .card': {
-    maxWidth: 800,
-    minHeight: 400,
-    margin: '1rem',
-    display: 'flex',
-    borderRadius: 12,
-    alignItems: 'center',
-    boxShadow: 'rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;'
-  }
-}));
+import { JWTRegister, ContentBox } from 'styles/pages/auth/RegisterPage';
 
 // inital login credentials
 const initialValues = {
@@ -45,7 +22,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email('이메일 주소가 올바르지 않습니다.').required('이메일을 입력하세요')
 });
 
-const AuthRegister = () => {
+const RegisterPage = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -145,4 +122,4 @@ const AuthRegister = () => {
   );
 };
 
-export default AuthRegister;
+export default RegisterPage;

@@ -1,20 +1,7 @@
-import { Box, styled } from '@mui/material';
+import { Box } from '@mui/material';
 import AppLogo from 'components/Logo';
 import useSettings from 'hooks/useSettings';
-import { Span } from 'components/Typography';
-
-const BrandRoot = styled(Box)(() => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '20px 18px 20px 29px'
-}));
-
-const StyledSpan = styled(Span)(({ mode }) => ({
-  fontSize: 18,
-  marginLeft: '.5rem',
-  display: mode === 'compact' ? 'none' : 'block'
-}));
+import { BrandRoot, StyledSpan } from 'styles/components/Brand';
 
 const Brand = ({ children }) => {
   const { settings } = useSettings();

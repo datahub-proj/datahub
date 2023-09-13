@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Box, styled, useMediaQuery, useTheme, ThemeProvider } from '@mui/material';
+import { useMediaQuery, useTheme, ThemeProvider } from '@mui/material';
 import useSettings from 'hooks/useSettings';
 import { sidebarWidth, sidebarCompactWidth } from 'data/constant';
 
@@ -8,33 +8,7 @@ import SidebarTheme from 'theme/Sidebar';
 import AppSidebar from './Sidebar';
 import AppHeader from './Header';
 import AppFooter from './Footer';
-
-const LayoutRoot = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  background: theme.palette.background.default
-}));
-
-const ContentBox = styled(Box)(() => ({
-  height: '100%',
-  display: 'flex',
-  overflowY: 'auto',
-  overflowX: 'hidden',
-  flexDirection: 'column',
-  justifyContent: 'space-between'
-}));
-
-const LayoutContainer = styled(Box)(({ width, open }) => ({
-  height: '100vh',
-  display: 'flex',
-  flexGrow: '1',
-  flexDirection: 'column',
-  verticalAlign: 'top',
-  marginLeft: width,
-  position: 'relative',
-  overflow: 'hidden',
-  transition: 'all 0.3s ease',
-  marginRight: open ? 50 : 0
-}));
+import { LayoutRoot, LayoutContainer, ContentBox } from 'styles/layouts/Layout';
 
 const Layout = () => {
   const { settings, updateSettings } = useSettings();

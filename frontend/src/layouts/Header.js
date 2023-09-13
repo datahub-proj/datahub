@@ -1,73 +1,16 @@
-import { themeShadows } from 'theme/themeColors';
-import {
-  Box,
-  styled,
-  MenuItem,
-  Icon,
-  Hidden,
-  IconButton,
-  useMediaQuery,
-  useTheme
-} from '@mui/material';
-import { topBarHeight } from 'data/constant';
+import { Box, Icon, Hidden, useMediaQuery, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Span } from 'components/Typography';
 import AppMenu from 'components/Menu';
 import AppSearchBar from 'components/SearchBar';
 import useSettings from 'hooks/useSettings';
-
-const StyledIconButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.text.primary
-}));
-
-const HeaderRoot = styled('div')({
-  top: 0,
-  zIndex: 96,
-  height: topBarHeight,
-  boxShadow: themeShadows[8],
-  transition: 'all 0.3s ease'
-});
-
-const HeaderContainer = styled(Box)(({ theme }) => ({
-  padding: '8px',
-  paddingLeft: 18,
-  paddingRight: 20,
-  height: topBarHeight,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  background: theme.palette.primary.main,
-  [theme.breakpoints.down('sm')]: {
-    paddingLeft: 16,
-    paddingRight: 16
-  },
-  [theme.breakpoints.down('xs')]: {
-    paddingLeft: 14,
-    paddingRight: 16
-  }
-}));
-
-const UserMenu = styled(Box)({
-  padding: 4,
-  display: 'flex',
-  borderRadius: 24,
-  cursor: 'pointer',
-  alignItems: 'center',
-  '& span': { margin: '0 8px' }
-});
-
-const StyledItem = styled(MenuItem)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  minWidth: 185,
-  '& a': {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    textDecoration: 'none'
-  },
-  '& span': { marginRight: '10px', color: theme.palette.text.primary }
-}));
+import {
+  HeaderRoot,
+  HeaderContainer,
+  StyledIconButton,
+  StyledItem,
+  UserMenu
+} from 'styles/layouts/Header';
 
 const AppHeader = () => {
   const theme = useTheme();

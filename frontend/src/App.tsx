@@ -1,9 +1,14 @@
+import { useEffect, useState } from 'react';
+import { useRoutes } from 'react-router-dom';
+import { routes } from './routes';
+
 function App() {
-  return (
-    <>
-      <h1 className="text-3xl">Hello world!</h1>
-    </>
-  );
+  const [loading, setLoading] = useState<boolean>(true);
+  const content = useRoutes(routes);
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 500);
+  });
+  return loading ? <p>loading...</p> : <>{content}</>;
 }
 
 export default App;

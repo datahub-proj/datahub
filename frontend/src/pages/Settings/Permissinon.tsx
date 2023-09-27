@@ -1,7 +1,5 @@
-import React from 'react';
-
 const Permissinon = () => {
-  return <div>Permissinon</div>;
+  return <></>;
 };
 
 export default Permissinon;

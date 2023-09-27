@@ -160,6 +160,12 @@ span.flatpickr-weekday,
   box-shadow: -10px 0 0 #3c50e0;
 }
 
+@layer components {
+  .btn-select {
+    @apply cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left  transition ease-in-out duration-150;
+  }
+}
+
 .map-btn .jvm-zoom-btn {
   @apply flex h-7.5 w-7.5 items-center justify-center rounded border border-stroke bg-white px-0 pt-0 pb-0.5 text-2xl leading-none text-body hover:border-primary hover:bg-primary hover:text-white dark:border-strokedark dark:text-bodydark dark:bg-meta-4 dark:hover:border-primary dark:hover:text-white dark:hover:bg-primary;
 }
@@ -222,17 +228,17 @@ span.flatpickr-weekday,
   @apply xl:!bottom-8;
 }
 
+.data-table-common .datatable-info {
+  @apply !m-0 font-bold;
+}
 .data-table-common .datatable-search {
-  @apply relative overflow-hidden rounded w-100 !ml-0;
+  @apply relative overflow-hidden rounded w-full lg:w-70 !ml-0;
 }
 .data-table-one .datatable-search input {
   @apply h-[46px] w-full rounded border border-stroke bg-transparent px-5 outline-none focus:border-primary dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary;
 }
-.data-table-common .datatable-selector {
-  @apply relative z-20 inline-flex bg-transparent p-0 font-medium text-body dark:text-bodydark outline-none;
-}
 .data-table-common .datatable-top {
-  @apply sm:flex-row-reverse sm:items-center sm:justify-between gap-4 border-b border-stroke py-4.5 px-7.5 dark:border-strokedark flex-col flex sm:gap-x-4 sm:gap-y-0 after:hidden;
+  @apply flex items-center justify-between gap-5 border-b border-stroke py-4.5 px-7.5 dark:border-strokedark  after:hidden;
 }
 .data-table-common .datatable-dropdown label {
   @apply inline-flex items-center gap-2.5 font-medium capitalize text-black dark:text-white;
@@ -241,7 +247,7 @@ span.flatpickr-weekday,
   @apply after:hidden before:hidden;
 }
 .datatable-table > thead > tr:first-child > th {
-  @apply font-medium border-transparent px-2.5 pt-9 pb-2.5;
+  @apply font-medium border-transparent;
 }
 .data-table-common .datatable-table > tbody > tr > td:first-child,
 .data-table-common .datatable-table > thead > tr > th:first-child {
@@ -252,7 +258,7 @@ span.flatpickr-weekday,
   @apply pr-8;
 }
 .data-table-common .datatable-table > thead > tr:last-child > th {
-  @apply !border-b border-stroke dark:border-strokedark pb-6;
+  @apply !border-b border-stroke dark:border-strokedark pt-3 pb-3;
 }
 .data-table-common .datatable-table > thead > tr:last-child > th input {
   @apply h-[34px] w-full rounded border border-stroke bg-transparent px-3 text-sm outline-none focus:border-primary dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary;
@@ -263,32 +269,39 @@ span.flatpickr-weekday,
 .data-table-one .datatable-table > tbody > tr > td:first-child {
   @apply text-primary dark:text-white;
 }
-.data-table-common .datatable-table > tbody > tr > td {
-  @apply py-5 border-b border-stroke dark:border-strokedark font-medium;
-}
 .data-table-one .datatable-bottom {
   @apply sm:flex-row-reverse sm:items-center sm:justify-between gap-4 flex-col flex sm:space-x-4 sm:gap-0 after:hidden py-7 px-8;
+}
+.data-table-common .datatable-table > tbody > tr > td {
+  @apply border-b border-stroke dark:border-strokedark font-medium align-middle;
 }
 .data-table-common .datatable-wrapper.no-footer .datatable-container {
   @apply border-none;
 }
-.data-table-common .datatable-info {
-  @apply !m-0 font-medium;
+.data-table-common .datatable-selector {
+  @apply relative z-20 inline-flex bg-transparent p-0 font-medium text-body dark:text-bodydark outline-none;
 }
+
 .data-table-common .datatable-pagination {
   @apply !m-0;
 }
-.data-table-common .datatable-pagination a {
-  @apply cursor-pointer p-0 font-medium text-body dark:text-bodydark flex h-8 w-8 items-center justify-center rounded hover:bg-primary hover:text-white;
+
+.data-table-common .datatable-pagination button {
+  @apply cursor-pointer p-0 font-medium  dark:text-bodydark flex h-8 w-8 items-center justify-center rounded hover:bg-primary hover:text-white;
 }
-.data-table-common .datatable-pagination .datatable-active a {
+.data-table-common .datatable-pagination button.datatable-active {
   @apply bg-primary text-white;
 }
+
 .data-table-common .datatable-pagination li.datatable-hidden {
   @apply !visible;
 }
 .data-table-two .datatable-bottom {
-  @apply sm:flex-row sm:items-center sm:justify-between gap-4 flex-col flex sm:space-x-4 sm:gap-0 after:hidden py-7 px-8;
+  @apply flex items-center justify-center gap-6 py-7 px-8;
+}
+
+.data-table-two .datatable-bottom .datatable-pagination-list {
+  @apply flex sm:gap-0 lg:gap-1.5;
 }
 .data-table-two .datatable-search input {
   @apply h-11.5 w-full rounded border border-stroke bg-whiter px-5 outline-none focus:border-primary dark:border-strokedark dark:bg-meta-4 dark:focus:border-primary;
@@ -314,104 +327,215 @@ input[type='search']::-webkit-search-cancel-button {
   display: none !important;
 }
 
-/* Font */
+/* Data Table */
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-Light.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-Light.woff') format('woff'),
-    url('./assets/fonts/Satoshi-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-display: swap;
-  font-style: normal;
+.datatable-wrapper.no-header .datatable-container {
+  border-top: 1px solid #d9d9d9;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-LightItalic.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-LightItalic.woff') format('woff'),
-    url('./assets/fonts/Satoshi-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-display: swap;
-  font-style: italic;
+.datatable-wrapper.no-footer .datatable-container {
+  border-bottom: 1px solid #d9d9d9;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-Regular.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-Regular.woff') format('woff'),
-    url('./assets/fonts/Satoshi-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
+.datatable-top,
+.datatable-bottom {
+  padding: 8px 10px;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-Italic.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-Italic.woff') format('woff'),
-    url('./assets/fonts/Satoshi-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-  font-style: italic;
+.datatable-top > nav:first-child,
+.datatable-top > div:first-child,
+.datatable-bottom > nav:first-child,
+.datatable-bottom > div:first-child {
+  float: left;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-Medium.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-Medium.woff') format('woff'),
-    url('./assets/fonts/Satoshi-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
+.datatable-top > nav:last-child,
+.datatable-top > div:last-child,
+.datatable-bottom > nav:last-child,
+.datatable-bottom > div:last-child {
+  float: right;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-MediumItalic.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-MediumItalic.woff') format('woff'),
-    url('./assets/fonts/Satoshi-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-display: swap;
-  font-style: italic;
+.datatable-selector {
+  padding: 6px;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-Bold.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-Bold.woff') format('woff'),
-    url('./assets/fonts/Satoshi-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
+.datatable-input {
+  padding: 6px 12px;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-BoldItalic.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-BoldItalic.woff') format('woff'),
-    url('./assets/fonts/Satoshi-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-  font-style: italic;
+.datatable-info {
+  margin: 7px 0;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-Black.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-Black.woff') format('woff'),
-    url('./assets/fonts/Satoshi-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-display: swap;
-  font-style: normal;
+/* PAGER */
+.datatable-pagination ul {
+  margin: 0;
+  padding-left: 0;
 }
 
-@font-face {
-  font-family: 'Satoshi';
-  src: url('./assets/fonts/Satoshi-BlackItalic.woff2') format('woff2'),
-    url('./assets/fonts/Satoshi-BlackItalic.woff') format('woff'),
-    url('./assets/fonts/Satoshi-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-display: swap;
-  font-style: italic;
+.datatable-pagination li {
+  list-style: none;
+  float: left;
+}
+
+.datatable-pagination li.datatable-hidden {
+  visibility: hidden;
+}
+
+.datatable-pagination a {
+  border: 1px solid transparent;
+  float: left;
+  margin-left: 2px;
+  padding: 6px 12px;
+  position: relative;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+
+.datatable-pagination a:hover {
+  background-color: #d9d9d9;
+}
+
+.datatable-pagination .datatable-active a,
+.datatable-pagination .datatable-active a:focus,
+.datatable-pagination .datatable-active a:hover {
+  background-color: #d9d9d9;
+  cursor: default;
+}
+
+.datatable-pagination .datatable-ellipsis a,
+.datatable-pagination .datatable-disabled a,
+.datatable-pagination .datatable-disabled a:focus,
+.datatable-pagination .datatable-disabled a:hover {
+  pointer-events: none;
+  cursor: default;
+}
+
+.datatable-pagination .datatable-disabled a,
+.datatable-pagination .datatable-disabled a:focus,
+.datatable-pagination .datatable-disabled a:hover {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.datatable-pagination .datatable-pagination a {
+  font-weight: bold;
+}
+
+/* TABLE */
+.datatable-table {
+  max-width: 100%;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.datatable-table > tbody > tr > td,
+.datatable-table > tbody > tr > th,
+.datatable-table > tfoot > tr > td,
+.datatable-table > tfoot > tr > th,
+.datatable-table > thead > tr > td,
+.datatable-table > thead > tr > th {
+  vertical-align: top;
+  padding: 8px 10px;
+}
+
+.datatable-table > thead > tr > th {
+  vertical-align: bottom;
+  text-align: left;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.datatable-table > tfoot > tr > th {
+  vertical-align: bottom;
+  text-align: left;
+  border-top: 1px solid #d9d9d9;
+}
+
+.datatable-table th {
+  vertical-align: bottom;
+  text-align: left;
+}
+
+.datatable-table th a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.datatable-sorter,
+.datatable-filter {
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.datatable-sorter::before,
+.datatable-sorter::after {
+  content: '';
+  height: 0;
+  width: 0;
+  position: absolute;
+  right: 4px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  opacity: 0.2;
+}
+
+.datatable-sorter::before {
+  border-top: 4px solid #000;
+  bottom: 0px;
+}
+
+.datatable-sorter::after {
+  border-bottom: 4px solid #000;
+  border-top: 4px solid transparent;
+  top: 0px;
+}
+
+.datatable-ascending .datatable-sorter::after,
+.datatable-descending .datatable-sorter::before,
+.datatable-ascending .datatable-filter::after,
+.datatable-descending .datatable-filter::before {
+  opacity: 0.6;
+}
+
+.datatable-filter::before {
+  content: '';
+  position: absolute;
+  right: 4px;
+  opacity: 0.2;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-radius: 50%;
+  border-top: 10px solid #000;
+  top: 25%;
+}
+
+.datatable-filter-active .datatable-filter::before {
+  opacity: 0.6;
+}
+
+.datatable-empty {
+  text-align: center;
+}
+
+.datatable-top::after,
+.datatable-bottom::after {
+  clear: both;
+  content: ' ';
+  display: table;
+}
+
+table.datatable-table:focus tr.datatable-cursor > td:first-child {
+  border-left: 3px blue solid;
+}
+
+table.datatable-table:focus {
+  outline: solid 1px black;
+  outline-offset: -1px;
 }

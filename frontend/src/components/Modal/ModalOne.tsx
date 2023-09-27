@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-interface ModalProps {
+type ModalProps = {
   name?: string;
-}
+};
 
 const ModalOne: React.FC = ({ name = 'Button', ...props }: ModalProps) => {
   const [modalOpen, setModalOpen] = useState(false);

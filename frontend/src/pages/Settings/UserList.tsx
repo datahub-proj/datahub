@@ -1,5 +1,5 @@
 import React from 'react';
-import Breadcrumb from '@/components/custom/Breadcrumb';
+import Breadcrumb from '@/components/Breadcrumb';
 import UserListTable from '@/features/Settings/user/component/Table/UserListTable';
 import { column } from '@/features/Settings/user/data/column';
 import { db } from '@/features/Settings/user/data/db';

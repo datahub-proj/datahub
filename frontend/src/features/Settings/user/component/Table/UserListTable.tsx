@@ -10,8 +10,8 @@ import {
 } from '@tanstack/react-table';
 
 import { useEffect, useState } from 'react';
-import { DebouncedInput } from '@/components/Table/utils/DebounceInput';
-import { fuzzyFilter } from '@/components/Table/utils/filterfns';
+import { DebouncedInput } from '@/components/templates/Table/utils/DebounceInput';
+import { fuzzyFilter } from '@/components/templates/Table/utils/filterfns';
 import CreateUserModal from '../Modal/CreateUserModal';
 
 interface ReactTableProps<T extends object> {

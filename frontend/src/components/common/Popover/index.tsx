@@ -1,3 +1,4 @@
+import { useOutClick } from '@/hooks/useOuterClick';
 import React, { useState, useRef, useEffect } from 'react';
 
 type PopoversProps = {
@@ -12,20 +13,8 @@ const PopoversTwo: React.FC<PopoversProps> = ({
   const trigger = useRef<any>(null);
   const popovers = useRef<any>(null);
 
-  // close on click outside
-  useEffect(() => {
-    const clickHandler = ({ target }: MouseEvent) => {
-      if (!popovers.current) return;
-      if (
-        !popoversOpen ||
-        popovers.current.contains(target) ||
-        trigger.current.contains(target)
-      )
-        return;
-      setPopoversOpen(false);
-    };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
+  useOutClick([popovers], () => {
+    setPopoversOpen(false);
   });
 
   return (

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 
 // useOutClick 훅의 타입 정의
+// close if the esc key is pressed
+// Check if ESC key (keyCode 27) is pressed
+
 export const useOutClick = (
   refs: React.RefObject<HTMLElement>[],
   callback: () => void
@@ -23,4 +26,14 @@ export const useOutClick = (
       document.removeEventListener('mousedown', handleOutClicked);
     };
   }, [refs, callback]);
+
+  useEffect(() => {
+    const keyHandler = ({ keyCode }: KeyboardEvent) => {
+      if (keyCode === 27) {
+        callback();
+      }
+    };
+    document.addEventListener('keydown', keyHandler);
+    return () => document.removeEventListener('keydown', keyHandler);
+  }, [callback]);
 };

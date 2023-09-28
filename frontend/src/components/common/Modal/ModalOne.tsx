@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useOutClick } from '@/hooks/useOuterClick';
+import React, { useState, useRef } from 'react';
 
 type ModalProps = {
   name?: string;
@@ -10,30 +11,8 @@ const ModalOne: React.FC = ({ name = 'Button', ...props }: ModalProps) => {
   const trigger = useRef<any>(null);
   const modal = useRef<any>(null);
 
-  // close on click outside
-  useEffect(() => {
-    const clickHandler = ({ target }: MouseEvent) => {
-      if (!modal.current) return;
-      if (
-        !modalOpen ||
-        modal.current.contains(target) ||
-        trigger.current.contains(target)
-      )
-        return;
-      setModalOpen(false);
-    };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
-  });
-
-  // close if the esc key is pressed
-  useEffect(() => {
-    const keyHandler = ({ keyCode }: KeyboardEvent) => {
-      if (!modalOpen || keyCode !== 27) return;
-      setModalOpen(false);
-    };
-    document.addEventListener('keydown', keyHandler);
-    return () => document.removeEventListener('keydown', keyHandler);
+  useOutClick([modal], () => {
+    setModalOpen(false);
   });
 
   return (
